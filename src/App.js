@@ -1,6 +1,12 @@
 import './App.css';
+import { useContext } from 'react';
+import { SWContext } from './SWContext';
+import axios from 'axios';
+
 
 function App() {
+
+  const {apiRes, setApiRes} = useContext(SWContext);
 
   return (
     <div className="App">
