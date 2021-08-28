@@ -1,28 +1,18 @@
 import './App.css';
-import { useContext } from 'react';
-import { SWContext } from './SWContext';
-import axios from 'axios';
-
+import MovieList from './MovieList.js'
 
 function App() {
-
-  const {apiRes, setApiRes} = useContext(SWContext);
+  
 
   return (
     <div className="App">
-      <h1 class="main-heading">Star Wars API</h1>
+      <h1 className="main-heading">Star Wars API</h1>
 
       <form action="">
         <input type="text" />  
         <button>search</button>
       </form>    
-
-      <ul>
-        <li>Movie name</li>
-        <li>Movie name</li>
-        <li>Movie name</li>
-      </ul>
-
+        <MovieList />
     </div>
   );
 }

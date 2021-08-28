@@ -1,4 +1,4 @@
-import React, {useState, createContext} from 'react-state';
+import React, {useState, createContext} from 'react';
 
 export const SWContext = createContext();
 
