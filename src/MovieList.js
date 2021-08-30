@@ -1,30 +1,57 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SWContext } from './SWContext';
 import axios from 'axios';
 
 function MovieList() {
 
-    const {apiRes, setApiRes} = useContext(SWContext);
+    const {
+        swFilms, 
+        setSwFilms,
+    } = useContext(SWContext);
+
+
+    useEffect(() => {
+        axios
+        .get("https://swapi.dev/api/films")
+        .then(res => {
+            setSwFilms(res.data.results)
+            console.log("API SET")
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, []);
   
-    axios
-    .get("https://swapi.dev/api/films")
-    .then(res => {
-        setApiRes(res.data.results)
-        console.log(apiRes)
-    })
-    .catch(error => {
-        console.log(error);
-    });
+    const handleStarClick = (idx) =>{
+        console.log("star clicked")
+        console.log(idx)
+
+        if (swFilms[idx]["favourite"]){
+            setSwFilms([...swFilms.slice(0, idx), {...swFilms[idx], favourite: false}, ...swFilms.slice(idx+1)]);
+        } else {
+            setSwFilms([...swFilms.slice(0, idx), {...swFilms[idx], favourite: true}, ...swFilms.slice(idx+1)]);
+        }
+
+    }
 
     return(<div>
-        <ul>
         { 
-            apiRes ? 
-            apiRes.map( obj => <li>{obj.title}</li>) : 
+            swFilms ? 
+            swFilms.map( (obj, idx) => 
+                <div className="movie-results-div">
+                    <span key={obj.episode_id}>{obj.title}</span>
+                    <span
+                        key={idx}
+                        id={idx}
+                        onClick={ (e) => handleStarClick(idx)} 
+                        className={swFilms[idx]["favourite"] ? "star highlighted" : "star"}> 
+                        ☆
+                    </span>
+                </div> ) : 
             <p>loading...</p> 
         }
-        </ul>
     </div>)
 }
 
 export default MovieList;
+

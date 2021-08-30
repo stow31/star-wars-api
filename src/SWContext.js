@@ -4,11 +4,18 @@ export const SWContext = createContext();
 
 export function SWProvider(props){
 
-    const [apiRes, setApiRes] = useState();
+    const [swFilms, setSwFilms] = useState();
+    const [searchText, setSearchText] = useState("");
+    const [searchResults, setSearchResults] = useState();
 
     return <SWContext.Provider value={
-        {apiRes,
-        setApiRes}
+        {swFilms,
+        setSwFilms,
+        searchText,
+        setSearchText,
+        searchResults,
+        setSearchResults
+        }
     }>
         {props.children}
     </SWContext.Provider>
