@@ -8,7 +8,8 @@ function MovieList() {
         swFilms, 
         setSwFilms,
         swFavFilms, 
-        setSwFavFilms
+        setSwFavFilms,
+        searchResults
     } = useContext(SWContext);
 
 
@@ -80,22 +81,40 @@ function MovieList() {
 
         { 
             swFilms ? 
-            swFilms
-            .sort((x, y) => {
-                return (x["favourite"] === y["favourite"])? 0 : x["favourite"] ? -1 : 1;
-            })
-            .map( (obj, idx) => 
-                <div className="movie-results-div">
-                    <span key={obj.episode_id}>{obj.title}</span>
-                    <span
-                        key={idx}
-                        id={idx}
-                        onClick={ (e) => handleStarClick(idx)} 
-                        className={getFavListIndex(obj.title)>-1 ? "star highlighted" : "star"}> 
-                        ☆
-                    </span>
-                </div> ) : 
-            <p>loading...</p> 
+                searchResults ? 
+                    searchResults
+                    .sort((x, y) => {
+                    return (getFavListIndex(x["title"]) !== -1 && getFavListIndex(y["title"]) !== -1 || getFavListIndex(x["title"]) > -1 && getFavListIndex(y["title"]) > -1 ) ? 0 : getFavListIndex(x["title"]) > -1 ? -1 : 1;
+                    })
+                    .map( (obj, idx) => 
+                        <div className="movie-results-div">
+                            <span>{obj.title}</span>
+                            <span
+                                key={idx}
+                                onClick={ (e) => handleStarClick(obj.original_index)} 
+                                className={getFavListIndex(obj.title)>-1 ? "star highlighted" : "star"}> 
+                                ☆
+                            </span>
+                        </div> )
+                :
+                    swFilms
+                        .sort((x, y) => {
+                            return (getFavListIndex(x["title"]) !== -1 && getFavListIndex(y["title"]) !== -1 || getFavListIndex(x["title"]) > -1 && getFavListIndex(y["title"]) > -1 ) ? 0 : getFavListIndex(x["title"]) > -1 ? -1 : 1;
+                        })
+                        .map( (obj, idx) => 
+                            <div className="movie-results-div">
+                                <span key={obj.episode_id}>{obj.title}</span>
+                                <span
+                                    key={idx}
+                                    id={idx}
+                                    onClick={ (e) => handleStarClick(idx)} 
+                                    className={getFavListIndex(obj.title)>-1 ? "star highlighted" : "star"}> 
+                                    ☆
+                                </span>
+                            </div> ) 
+                
+            : 
+                <p>loading...</p> 
         }
     </div>)
 }

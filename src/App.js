@@ -1,6 +1,5 @@
 import './App.css';
 import MovieList from './MovieList.js'
-import SearchResults from './SearchResults.js'
 import { useContext, useEffect } from 'react';
 import { SWContext } from './SWContext';
 
@@ -45,8 +44,8 @@ function App() {
       <input onChange={handleTextChange} placeholder="Search Movies" type="text" />  
 
       { 
-        searchResults ?  
-        <SearchResults/> :
+        // searchResults ?  
+        // <SearchResults/> :
         <MovieList />
       }
     </div>
