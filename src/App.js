@@ -23,7 +23,10 @@ function App() {
   }
 
   const getSearchResults = () =>{
-    let filteredArr = swFilms
+    if (searchText.trim() === ""){
+      setSearchResults()
+    } else {
+      let filteredArr = swFilms
       ?.map( (obj, idx) => {
         return {...obj, original_index: idx}
       })
@@ -32,10 +35,8 @@ function App() {
           return obj
         }
       })
-
-
-    console.log(filteredArr);
-    setSearchResults(filteredArr)
+      setSearchResults(filteredArr)
+    }
   } 
 
   return (

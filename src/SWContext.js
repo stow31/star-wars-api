@@ -4,7 +4,8 @@ export const SWContext = createContext();
 
 export function SWProvider(props){
 
-    const [swFilms, setSwFilms] = useState();
+    const [swFilms, setSwFilms] = useState(JSON.parse(localStorage.getItem('swFilms')));
+    const [swFavFilms, setSwFavFilms] = useState(JSON.parse(localStorage.getItem('swFavFilms')) ?? []);
     const [searchText, setSearchText] = useState("");
     const [searchResults, setSearchResults] = useState();
 
@@ -14,7 +15,9 @@ export function SWProvider(props){
         searchText,
         setSearchText,
         searchResults,
-        setSearchResults
+        setSearchResults,
+        swFavFilms, 
+        setSwFavFilms
         }
     }>
         {props.children}
