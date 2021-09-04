@@ -1,3 +1,8 @@
+body{
+  background-color: black;
+  color: white;
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +10,17 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+h1.main-heading{
+  color: #F1C40F;
+}
+
+.search-box-input{
+  border-radius: 50px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
 }
 
 .star{
