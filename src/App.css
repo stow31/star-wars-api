@@ -23,6 +23,10 @@ h1.main-heading{
   text-align: center;
 }
 
+.movie-results-div a {
+  color: white;
+}
+
 .star{
   margin: 0 10px 0 10px;
   cursor: pointer;

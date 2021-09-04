@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { SWContext } from './SWContext';
+import { Switch, Route, Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 
 function MovieList() {
@@ -90,7 +91,6 @@ function MovieList() {
     }
 
     return(<div>
-
         { 
             swFilms && searchResults ? 
                     searchResults
@@ -99,7 +99,7 @@ function MovieList() {
                     })
                     .map( (obj, idx) => 
                         <div className="movie-results-div">
-                            <span>{obj.title}</span>
+                            <span><Link to="/url">{obj.title}</Link></span>
                             <span
                                 key={idx}
                                 onClick={ (e) => handleStarClick(obj.original_index)} 
@@ -111,7 +111,8 @@ function MovieList() {
             : 
                 <p>loading...</p> 
         }
-    </div>)
+    </div>
+    )
 }
 
 export default MovieList;
