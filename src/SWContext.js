@@ -8,6 +8,7 @@ export function SWProvider(props){
     const [swFavFilms, setSwFavFilms] = useState(JSON.parse(localStorage.getItem('swFavFilms')) ?? []);
     const [searchText, setSearchText] = useState("");
     const [searchResults, setSearchResults] = useState();
+    const [movieDetails, setMovieDetails] = useState(JSON.parse(localStorage.getItem('swFilms'))[0]);
 
     return <SWContext.Provider value={
         {swFilms,
@@ -17,7 +18,9 @@ export function SWProvider(props){
         searchResults,
         setSearchResults,
         swFavFilms, 
-        setSwFavFilms
+        setSwFavFilms,
+        movieDetails, 
+        setMovieDetails
         }
     }>
         {props.children}

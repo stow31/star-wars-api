@@ -10,7 +10,8 @@ function App() {
   return (
     <div className="App">
       <Switch>
-      <Route path="/url">
+
+      <Route path="/movie-details/:id">
           <MovieDetails/>
         </Route>
 
@@ -18,6 +19,7 @@ function App() {
           <SearchBar/>
           <MovieList />
         </Route>
+
       </Switch>
 
     </div>

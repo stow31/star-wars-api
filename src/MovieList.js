@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { SWContext } from './SWContext';
-import { Switch, Route, Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 function MovieList() {
@@ -11,7 +11,8 @@ function MovieList() {
         swFavFilms, 
         setSwFavFilms,
         searchResults,
-        setSearchResults
+        setSearchResults,
+        setMovieDetails
     } = useContext(SWContext);
 
 
@@ -99,10 +100,12 @@ function MovieList() {
                     })
                     .map( (obj, idx) => 
                         <div className="movie-results-div">
-                            <span><Link to="/url">{obj.title}</Link></span>
+                            <span>
+                                <Link to={`/movie-details/${obj.original_index}`}>{obj.title}</Link>
+                            </span>
                             <span
                                 key={idx}
-                                onClick={ (e) => handleStarClick(obj.original_index)} 
+                                onClick={ () => handleStarClick(obj.original_index)} 
                                 className={getFavListIndex(obj.title)>-1 ? "star highlighted" : "star"}> 
                                 ☆
                             </span>
