@@ -8,7 +8,6 @@ function App() {
   const {
     searchText, 
     setSearchText, 
-    searchResults,
     swFilms, 
     setSearchResults
   } = useContext(SWContext);
@@ -22,20 +21,14 @@ function App() {
   }
 
   const getSearchResults = () =>{
-    if (searchText.trim() === ""){
-      setSearchResults()
-    } else {
       let filteredArr = swFilms
-      ?.map( (obj, idx) => {
-        return {...obj, original_index: idx}
-      })
       ?.filter( obj => {
         if (obj.title.includes(searchText)) { 
           return obj
         }
       })
+      
       setSearchResults(filteredArr)
-    }
   } 
 
   return (
@@ -44,8 +37,6 @@ function App() {
       <input onChange={handleTextChange} placeholder="Search Movies" type="text" />  
 
       { 
-        // searchResults ?  
-        // <SearchResults/> :
         <MovieList />
       }
     </div>
