@@ -22,3 +22,6 @@ This was created as a coding test to call the Star Wars API returning the full m
 - When you hover over each individual character, show a tooltip containing further details on the user
 
 ### Painpoints
+
+- Making the search not case sensitive
+- Adding movies to the favourite list when the search results were rendered. The correct index value would not be parsed in to save the right movie as favourites
