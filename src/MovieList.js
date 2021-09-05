@@ -12,7 +12,6 @@ function MovieList() {
         setSwFavFilms,
         searchResults,
         setSearchResults,
-        setMovieDetails
     } = useContext(SWContext);
 
 

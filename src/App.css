@@ -40,9 +40,30 @@ h1.main-heading{
   margin: 20px 0 0 0;
 }
 
-.header-div{
+.movie-details-div .header-div{
   text-align: left;
   padding: 10px 20px;
+}
+
+.movie-details-div a{
+  color: white;
+}
+
+.movie-details-div .heading-text{
+
+}
+
+.movie-details-div .body-div{
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.moviedetail-key-span{
+  font-weight: 900;
+}
+
+.moviedetail-key-span{
+
 }
 
 @media (prefers-reduced-motion: no-preference) {

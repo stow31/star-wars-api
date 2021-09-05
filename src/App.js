@@ -2,7 +2,7 @@ import './App.css';
 import MovieList from './MovieList.js'
 import SearchBar from './SearchBar.js'
 import MovieDetails from './MovieDetails.js'
-import { Switch, Route, Link, useParams } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 
 function App() {
