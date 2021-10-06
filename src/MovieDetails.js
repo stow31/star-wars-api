@@ -15,7 +15,7 @@ function MovieDetails(){
 
     useEffect(() => {
         setMovieDetails(swFilms[id])
-    }, [id]);
+    }, [id, setMovieDetails, swFilms]);
 
     return(
         <div className="movie-details-div">

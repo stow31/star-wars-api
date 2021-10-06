@@ -21,13 +21,9 @@ function MovieList() {
         .get("https://swapi.dev/api/films")
         .then(res => {
             
-            console.log(res.data.results)
-
             let apiData = res.data.results.map( (obj, idx) => {
                 return {...obj, original_index: idx}
             })
-
-            console.log(apiData)
 
             localStorage.setItem('swFilms', JSON.stringify(apiData))
             setSwFilms(JSON.parse(localStorage.getItem('swFilms')))
@@ -36,13 +32,13 @@ function MovieList() {
         .catch(error => {
             console.log(error);
         });
-    }, []);
+    }, [setSearchResults, setSwFilms]);
 
     // find the index of the movie in the favourites list 
     const getFavListIndex = (movieTitle) =>{
         let index = -1;
         swFavFilms.forEach( (movieObj, idx) => {
-            if(movieObj["title"] == movieTitle){
+            if(movieObj["title"] === movieTitle){
                 index = idx;
             }
         })
@@ -59,12 +55,9 @@ function MovieList() {
   
     // when the star is clicked 
     const handleStarClick = (idx) =>{
-        console.log(idx)
         if(swFavFilms.length > 0){
             let index = getFavListIndex(swFilms[idx]["title"])
             if (index>-1){
-                //the movie is in the favourites list - you need to remove
-                console.log([...swFavFilms.slice(0, index), ...swFavFilms.slice(index+1)])
                 localStorage.setItem('swFavFilms', JSON.stringify([...swFavFilms.slice(0, index), ...swFavFilms.slice(index+1)]))
                 
                 setSwFavFilms(JSON.parse(localStorage.getItem('swFavFilms')))
@@ -95,10 +88,10 @@ function MovieList() {
             swFilms && searchResults ? 
                     searchResults
                     .sort((x, y) => {
-                        return (getFavListIndex(x["title"]) !== -1 && getFavListIndex(y["title"]) !== -1 || getFavListIndex(x["title"]) > -1 && getFavListIndex(y["title"]) > -1 ) ? 0 : getFavListIndex(x["title"]) > -1 ? -1 : 1;
+                        return ((getFavListIndex(x["title"]) !== -1 && getFavListIndex(y["title"]) !== -1) || (getFavListIndex(x["title"]) > -1 && getFavListIndex(y["title"])) > -1 ) ? 0 : getFavListIndex(x["title"]) > -1 ? -1 : 1;
                     })
                     .map( (obj, idx) => 
-                        <div className="movie-results-div">
+                        <div key={obj.episode_id} className="movie-results-div">
                             <span>
                                 <Link to={`/movie-details/${obj.original_index}`}>{obj.title}</Link>
                             </span>
